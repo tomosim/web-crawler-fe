@@ -6,17 +6,20 @@ class UrlInputHandler extends Component {
   };
 
   render() {
-    console.log(this.state.textBoxInput);
     return (
-      <form>
+      <div>
         <input
           type="text"
           onChange={this.handleUrlInput}
           value={this.state.textBoxInput}
         />
-        {/* make get request with the url given as a parameter */}
-        <button>Check Links</button>
-      </form>
+        <button
+          type="buton"
+          onClick={() => this.props.submitUrlToApi(this.state.textBoxInput)}
+        >
+          Check Links
+        </button>
+      </div>
     );
   }
 

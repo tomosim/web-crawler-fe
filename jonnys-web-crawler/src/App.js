@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import "./App.css";
 import UrlInputHandler from "./components/UrlInputHandler";
 import * as api from "./components/api";
+import WebLinksDisplayHandler from "./components/WebLinksDisplayHandler";
 
 class App extends Component {
   state = {
@@ -11,18 +12,22 @@ class App extends Component {
   render() {
     return (
       <div>
-        <UrlInputHandler />
+        <UrlInputHandler submitUrlToApi={this.submitUrlToApi} />
         <div>
           {Object.keys(this.state.checkedWebsites).length > 0 && (
-            <ul>
-              {/* {map over the checkedWebsite object} */}
-              <li />
-            </ul>
+            <WebLinksDisplayHandler />
           )}
         </div>
       </div>
     );
   }
+  submitUrlToApi = urlToCheck => {
+    api.checkWebsiteLinks(urlToCheck).then(urlObj => {
+      this.setState({
+        checkedWebsites: urlObj
+      });
+    });
+  };
 }
 
 export default App;
