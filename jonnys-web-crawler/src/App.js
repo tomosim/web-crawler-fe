@@ -15,7 +15,9 @@ class App extends Component {
         <UrlInputHandler submitUrlToApi={this.submitUrlToApi} />
         <div>
           {Object.keys(this.state.checkedWebsites).length > 0 && (
-            <WebLinksDisplayHandler />
+            <WebLinksDisplayHandler
+              checkedWebsites={this.state.checkedWebsites}
+            />
           )}
         </div>
       </div>
